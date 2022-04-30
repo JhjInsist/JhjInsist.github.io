@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="JhjInsist的个人博客">
+    <title>markdown语法 - JhjInsist的个人博客</title>
+    <meta name="author" content="宏佳">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"宏佳","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Markdown快速入门（typora）1、代码块:123// 代码块语法​```Java(语言类型)​```shell\n\n1.1.java代码块\n12345public class HelloWorld &#123;    public static void main(String []args) &#123;        System.out.println(&quot;Hello,World!&quot;);    &#125;&#125;\n\n1.2.shell脚本代码块\n12345678910111213141516171819202122# !/bin/bash  # 脚本生成一个 100 以内的随机数,提示用户猜数字,根据用户的输入,提示用户猜对了,# 猜小了或猜大了,直至用户猜对脚本结束。# RANDOM 为系统自带的系统变量,值为 0‐32767的随机数# 使用取余算法将随机数变为 1‐100 的随机数num=$[RANDOM%100+1]echo &quot;$num&quot; # 使用 read 提示用户猜数字# 使用 if 判断用户猜数字的大小关系:‐eq(等于),‐ne(不等于),‐gt(大于),‐ge(大于等于),# ‐lt(小于),‐le(小于等于)while :  do         read -p &quot;计算机生成了一个 1‐100 的随机数,你猜: &quot; cai        if [ $cai -eq $num ]        then                echo &quot;恭喜,猜对了&quot;                   exit            elif [ $cai -gt $num ]           then                    echo &quot;Oops,猜大了&quot;             else                    echo &quot;Oops,猜小了&quot;         fi  done\n\n2、标题：12345678910// 标题语法# 1级标题## 2级标题### 3级标题#### 4级标题##### 5级标题###### 6级标题！**注意：&#x27;#&#x27;与标题之间需要空格隔开**\n\n1级标题2级标题3级标题4级标题5级标题6级标题3、字体：1234567891011// 加粗**你好，世界**// 代码高亮显示==Hello,World!==// 删除线~~被删除的文字~~// 斜体*斜体*\n\n&#x2F;&#x2F; 加粗你好，世界\n&#x2F;&#x2F; 代码高亮显示Hello,World!\n&#x2F;&#x2F; 删除线被删除的文字\n&#x2F;&#x2F; 斜体斜体\n4、引用：123456// 引用语法&gt;作责：爱因斯坦&gt;&gt;作责：爱因斯坦&gt;&gt;&gt;作责：爱因斯坦！！！几个尖括号就代表前面有几条竖线。\n\n&#x2F;&#x2F; 引用语法\n\n作责：爱因斯坦\n\n作责：爱因斯坦\n\n作责：爱因斯坦\n\n\n\n5、分割线：123456// 分割线方式一：---方式二(此分割线相比方式一较粗，效果如下)：***\n\n5.1.方式一的分割线\n\n5.2.方式二的分割线\n\n6、图片插入：12// 在线图片/本地图片![图片名称](/dir/.../..) --图片插入方式(路径为：在线图片连接/本地图片绝对路径)\n\n\n7、超链接：12// 超链接语法[超链接名称](超链接地址)\n\n&#x2F;&#x2F; 超链接语法\n[恒亮的博客园](恒亮 - 博客园 (cnblogs.com))\n8、列表：1234567891011// 无序列表- 无序列表1- 无序列表2- 无序列表3// 有序列表1. 有序列表12. 有序列表22. 有序列表3！**注意：列表符和列表名称之间有空格**\n\n&#x2F;&#x2F; 无序列表\n\n无序列表1\n无序列表2\n无序列表3\n\n&#x2F;&#x2F; 有序列表\n\n有序列表1\n有序列表2\n有序列表3\n\n9、表格：1右键-&gt;插入-&gt;表格\n\n\n\n\n姓名\n语文\n数学\n\n\n\n张三\n88\n99\n\n\n李四\n99\n100\n\n\n10、快捷键：123// 1.Ctrl + Shift + 1(F1下面的按键) =&gt; 调出文件及大纲栏// 2.Ctrl + / =&gt; 将编辑笔记转换为Markdown编辑语言\n","dateCreated":"2022-04-29T23:02:45+08:00","dateModified":"2022-04-29T23:02:45+08:00","datePublished":"2022-04-29T23:02:45+08:00","description":"","headline":"markdown语法","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"},"publisher":{"@type":"Organization","name":"宏佳","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"}</script>
+    <meta name="description" content="Markdown快速入门（typora）1、代码块:123&#x2F;&#x2F; 代码块语法​&#96;&#96;&#96;Java(语言类型)​&#96;&#96;&#96;shell  1.1.java代码块 12345public class HelloWorld &amp;#123;    public static void main(String []args) &amp;#123;        System.out.println(&quot;Hello,Wor">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="markdown语法">
+<meta property="og:url" content="http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="JhjInsist的个人博客">
+<meta property="og:description" content="Markdown快速入门（typora）1、代码块:123&#x2F;&#x2F; 代码块语法​&#96;&#96;&#96;Java(语言类型)​&#96;&#96;&#96;shell  1.1.java代码块 12345public class HelloWorld &amp;#123;    public static void main(String []args) &amp;#123;        System.out.println(&quot;Hello,Wor">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.cnblogs.com/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM">
+<meta property="article:published_time" content="2022-04-29T15:02:45.506Z">
+<meta property="article:modified_time" content="2022-04-29T15:02:45.506Z">
+<meta property="article:author" content="宏佳">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.cnblogs.com/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            JhjInsist的个人博客
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Öffne den Link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Kategorien"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Kategorien</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archiv"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archiv</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Suche"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Suche</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="Über"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Über</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="http://stackoverflow.com/users"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Stack Overflow"
+                        >
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://facebook.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Facebook"
+                        >
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://plus.google.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Google Plus"
+                        >
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="E-Mail"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">E-Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            markdown语法
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-04-29T23:02:45+08:00">
+	
+		    29 4月 2022
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="Markdown快速入门（typora）"><a href="#Markdown快速入门（typora）" class="headerlink" title="Markdown快速入门（typora）"></a>Markdown快速入门（typora）</h1><h2 id="1、代码块"><a href="#1、代码块" class="headerlink" title="1、代码块:"></a>1、代码块:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码块语法</span></span><br><span class="line">​```Java(语言类型)</span><br><span class="line">​```shell</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.1.java代码块</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello,World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.2.shell脚本代码块</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash  <span class="comment"># 脚本生成一个 100 以内的随机数,提示用户猜数字,根据用户的输入,提示用户猜对了,</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">猜小了或猜大了,直至用户猜对脚本结束。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">RANDOM 为系统自带的系统变量,值为 0‐32767的随机数</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用取余算法将随机数变为 1‐100 的随机数num=$[RANDOM%100+1]<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$num</span>&quot;</span></span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="built_in">read</span> 提示用户猜数字</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="keyword">if</span> 判断用户猜数字的大小关系:‐eq(等于),‐ne(不等于),‐gt(大于),‐ge(大于等于),</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">‐lt(小于),‐le(小于等于)</span></span><br><span class="line"></span><br><span class="line">while :</span><br><span class="line">  do     </span><br><span class="line">    read -p &quot;计算机生成了一个 1‐100 的随机数,你猜: &quot; cai    </span><br><span class="line">    if [ $cai -eq $num ]    </span><br><span class="line">    then        </span><br><span class="line">        echo &quot;恭喜,猜对了&quot;           </span><br><span class="line">        exit        </span><br><span class="line">    elif [ $cai -gt $num ]       </span><br><span class="line">    then            </span><br><span class="line">        echo &quot;Oops,猜大了&quot;         </span><br><span class="line">    else            </span><br><span class="line">        echo &quot;Oops,猜小了&quot;     </span><br><span class="line">    fi</span><br><span class="line">  done</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、标题："><a href="#2、标题：" class="headerlink" title="2、标题："></a>2、标题：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 标题语法</span></span><br><span class="line"></span><br><span class="line"># <span class="number">1</span>级标题</span><br><span class="line">## <span class="number">2</span>级标题</span><br><span class="line">### <span class="number">3</span>级标题</span><br><span class="line">#### <span class="number">4</span>级标题</span><br><span class="line">##### <span class="number">5</span>级标题</span><br><span class="line">###### <span class="number">6</span>级标题</span><br><span class="line"></span><br><span class="line">！**注意：<span class="string">&#x27;#&#x27;</span>与标题之间需要空格隔开**</span><br></pre></td></tr></table></figure>
+
+<h1 id="1级标题"><a href="#1级标题" class="headerlink" title="1级标题"></a>1级标题</h1><h2 id="2级标题"><a href="#2级标题" class="headerlink" title="2级标题"></a>2级标题</h2><h3 id="3级标题"><a href="#3级标题" class="headerlink" title="3级标题"></a>3级标题</h3><h4 id="4级标题"><a href="#4级标题" class="headerlink" title="4级标题"></a>4级标题</h4><h5 id="5级标题"><a href="#5级标题" class="headerlink" title="5级标题"></a>5级标题</h5><h6 id="6级标题"><a href="#6级标题" class="headerlink" title="6级标题"></a>6级标题</h6><h2 id="3、字体："><a href="#3、字体：" class="headerlink" title="3、字体："></a>3、字体：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 加粗</span><br><span class="line">**你好，世界**</span><br><span class="line"></span><br><span class="line">// 代码高亮显示</span><br><span class="line">==Hello,World!==</span><br><span class="line"></span><br><span class="line">// 删除线</span><br><span class="line">~~被删除的文字~~</span><br><span class="line"></span><br><span class="line">// 斜体</span><br><span class="line">*斜体*</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; 加粗<br><strong>你好，世界</strong></p>
+<p>&#x2F;&#x2F; 代码高亮显示<br>Hello,World!</p>
+<p>&#x2F;&#x2F; 删除线<br><del>被删除的文字</del></p>
+<p>&#x2F;&#x2F; 斜体<br><em>斜体</em></p>
+<h2 id="4、引用："><a href="#4、引用：" class="headerlink" title="4、引用："></a>4、引用：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 引用语法</span><br><span class="line">&gt;作责：爱因斯坦</span><br><span class="line">&gt;&gt;作责：爱因斯坦</span><br><span class="line">&gt;&gt;&gt;作责：爱因斯坦</span><br><span class="line"></span><br><span class="line">！！！几个尖括号就代表前面有几条竖线。</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; 引用语法</p>
+<blockquote>
+<p>作责：爱因斯坦</p>
+<blockquote>
+<p>作责：爱因斯坦</p>
+<blockquote>
+<p>作责：爱因斯坦</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="5、分割线："><a href="#5、分割线：" class="headerlink" title="5、分割线："></a>5、分割线：</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分割线</span></span><br><span class="line">方式一：</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">方式二(此分割线相比方式一较粗，效果如下)：</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.1.方式一的分割线</strong></p>
+<hr>
+<p><strong>5.2.方式二的分割线</strong></p>
+<hr>
+<h2 id="6、图片插入："><a href="#6、图片插入：" class="headerlink" title="6、图片插入："></a>6、图片插入：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在线图片/本地图片</span></span><br><span class="line">![图片名称](/dir/.../..) --图片插入方式(路径为：在线图片连接/本地图片绝对路径)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.cnblogs.com/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="demo"></p>
+<h2 id="7、超链接："><a href="#7、超链接：" class="headerlink" title="7、超链接："></a>7、超链接：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 超链接语法</span><br><span class="line">[超链接名称](超链接地址)</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; 超链接语法</p>
+<p>[恒亮的博客园](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liulia/">恒亮 - 博客园 (cnblogs.com)</a>)</p>
+<h2 id="8、列表："><a href="#8、列表：" class="headerlink" title="8、列表："></a>8、列表：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 无序列表</span><br><span class="line">- 无序列表<span class="number">1</span></span><br><span class="line">- 无序列表<span class="number">2</span></span><br><span class="line">- 无序列表<span class="number">3</span></span><br><span class="line"></span><br><span class="line">// 有序列表</span><br><span class="line"><span class="number">1.</span> 有序列表<span class="number">1</span></span><br><span class="line"><span class="number">2.</span> 有序列表<span class="number">2</span></span><br><span class="line"><span class="number">2.</span> 有序列表<span class="number">3</span></span><br><span class="line"></span><br><span class="line">！**注意：列表符和列表名称之间有空格**</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; 无序列表</p>
+<ul>
+<li>无序列表1</li>
+<li>无序列表2</li>
+<li>无序列表3</li>
+</ul>
+<p>&#x2F;&#x2F; 有序列表</p>
+<ol>
+<li>有序列表1</li>
+<li>有序列表2</li>
+<li>有序列表3</li>
+</ol>
+<h2 id="9、表格："><a href="#9、表格：" class="headerlink" title="9、表格："></a>9、表格：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键-&gt;插入-&gt;表格</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>语文</th>
+<th>数学</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>88</td>
+<td>99</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>99</td>
+<td>100</td>
+</tr>
+</tbody></table>
+<h2 id="10、快捷键："><a href="#10、快捷键：" class="headerlink" title="10、快捷键："></a>10、快捷键：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// <span class="number">1.</span>Ctrl + Shift + <span class="number">1</span>(F1下面的按键) =&gt; 调出文件及大纲栏</span><br><span class="line"></span><br><span class="line">// <span class="number">2.</span>Ctrl + / =&gt; 将编辑笔记转换为Markdown编辑语言</span><br></pre></td></tr></table></figure>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/04/29/IO%E6%B5%81/"
+                    data-tooltip="IO流笔记"
+                    aria-label="FRÜHER: IO流笔记"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/04/29/redis/"
+                    data-tooltip="(kein Titel)"
+                    aria-label="NÄCHSTER: (kein Titel)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                    title="Teilen auf Facebook"
+                    aria-label="Teilen auf Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                    title="Teilen auf Twitter"
+                    aria-label="Teilen auf Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                    title="Teilen auf Google Plus"
+                    aria-label="Teilen auf Google Plus"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2022 宏佳. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/04/29/IO%E6%B5%81/"
+                    data-tooltip="IO流笔记"
+                    aria-label="FRÜHER: IO流笔记"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/04/29/redis/"
+                    data-tooltip="(kein Titel)"
+                    aria-label="NÄCHSTER: (kein Titel)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                    title="Teilen auf Facebook"
+                    aria-label="Teilen auf Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                    title="Teilen auf Twitter"
+                    aria-label="Teilen auf Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                    title="Teilen auf Google Plus"
+                    aria-label="Teilen auf Google Plus"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                        aria-label="Teilen auf Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                        aria-label="Teilen auf Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://example.com/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
+                        aria-label="Teilen auf Google Plus"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">宏佳</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":300,"height":600},"mobile":{"show":true},"log":false});</script></body>
+</html>

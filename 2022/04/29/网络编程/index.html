@@ -6,21 +6,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="JhjInsist的个人博客">
-    <title>JhjInsist的个人博客</title>
+    <title>网络编程 - JhjInsist的个人博客</title>
     <meta name="author" content="宏佳">
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"Website","@id":"http://example.com","author":{"@type":"Person","name":"宏佳","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"name":"JhjInsist的个人博客","description":"知道自己想做什么","url":"http://example.com"}</script>
-    <meta name="description" content="知道自己想做什么">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"宏佳","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"网络编程1.1概述打电话 – 连接 – 接了 –通话     TCP\n发短信  – 发送了就完事了 – 接受 UDP\n计算机网络：\n网络编程的目的：无线电台..传播交流信息，数据交换。通信 \n需要什么：\n\n如何准确地定位网络的一台主机  端口，定位到这个计算机的某个资源\n找到了这个主机，如何传输数据？\n\njavaWeb：网页编程 B&#x2F;S\n网络编程： TCP&#x2F;IP   C&#x2F;S\n 1.2网络通信的要素\n如何实现网络的通信？\n通信双方的地址：\n\nip\n端口号\n\n规则：网络通信的协议\nHTTP\nFTP\nOSI\nTCP&#x2F;IP \n\n小结：\n\n网络编程中有两个主要的\n如何准确地定位到网络上的一台或者多台主机\n找到主机之后如何进行通信\n\n\n网络编程的要素\nip 和断后好\tIP\n网络通信协议 TCP&#x2F;UDP\n\n\n\n\n万物皆对象\n\n1.3、IP\n地址：127。0.0.1 &#x3D; localhost\nip地址的分类\nipv4&#x2F;ipv6- IPVE 127.0.0.1 ,4个字节组成，0-255，42亿 ；30亿在北美- IPV6 ：128位。8个无符号整数\n公网-私网\nabcd类地址\n192对组织内部使用\n\n\n\n\n\n1234567891011121314151617181920212223242526package com.jhj.dlpu;import java.net.InetAddress;import java.net.UnknownHostException;public class Main &#123;    public static void main(String[] args) &#123;\t// write your code here        try &#123;            InetAddress    inetAddress = InetAddress.getByName(&quot;127.0.0.1&quot;);            System.out.println(inetAddress);            InetAddress    inetAddress2 = InetAddress.getByName(&quot;www.baidu.com&quot;);            System.out.println(inetAddress2);            InetAddress    inetAddress3 = InetAddress.getLocalHost();            System.out.println(inetAddress3);            //常用方法            System.out.println(inetAddress2.getCanonicalHostName());//获取规范名字 ip            System.out.println(inetAddress2.getHostAddress());//ip            System.out.println(inetAddress2.getHostName()); //获取域名或电脑名        &#125; catch (UnknownHostException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n1.4、端口PORT多扣表示计算机上的一个程序的进程；\n\n不同的进程有不同的端口号！用来区分软件\n\n被规定为0~65535\n\nTCP,UDP 65535*2 单个协议下端口号不能冲突\n\n端口分类\n\n公有端口：0-1023\n\nhttp：80(默认端口）\nhttps：443（默认端口）\nftp：21\ntelent：23\n\n\n程序注册端口：1024~49151分配给用户或者程序\n\nTomcat:8080\nmusql:3306\noracle:1521\n\n\n动态，私有端口49152~65535\n\n常用dos\nnetstat   -ano 查看所有端口\nnetstat  -ano | findstr”5900” 查看5900端口\ntasklist|findstr”端口号”  查看指定端口的进程\n\n\n\n\n\n1.5、通信协议协议：约定，就好比现在说是普通话\n网络通信协议：速率，传输码率，代码结构，传输控制\n问题：非常的复杂\n大事化小：分层\nTCP&#x2F;IP协议簇：实际上是一组协议\n重要：\n\nTCP：用户传输协议\nUDP：用户数据报协议\n\n出名的协议：\n\nTCP:用户传输协议\nIP:网络互联协议\n\nTCP UDP 对比\nTCP:打电话\n\n连接，稳定\n三次握手 四次挥手\n\n\nA:你瞅啥？\nB:瞅你咋地？\nA:来打一架！\n\nA:我要断开了\nB:我知道了\nB:是否真的断开\nA:我真的要断开了\n\n\n\n客户端、服务端\n传输完成，释放连接，效率低\n\nUDP：发短信\n\n不连接，不稳定\n客户端、服务端：没有明确的界限\n不管有没有准备好，都可以发给你。。\n导弹\nDDOS:洪水攻击！饱和攻击\n\n1.6、TCPTCP实现聊天模型客户端\n通过socket 连接服务器\n\n发送消息\n12345678910111213141516171819202122232425262728293031323334353637383940414243package com.jhj.dlpu.testTCP;import java.io.IOException;import java.io.OutputStream;import java.net.InetAddress;import java.net.Socket;import java.net.UnknownHostException;import java.nio.charset.StandardCharsets;//客户端模型public class testClient &#123;    public static void main(String[] args) &#123;        Socket socket = null;        OutputStream os = null;        try &#123;            InetAddress inetAddress = InetAddress.getByName(&quot;127.0.0.1&quot;);            int port = 9999;            socket = new Socket(inetAddress,port);            os = socket.getOutputStream();            os.write(&quot;你好，我是客户小钊钊&quot;.getBytes(StandardCharsets.UTF_8));        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;        finally &#123;            if(os!=null)&#123;                try &#123;                    os.close();                &#125; catch (IOException e) &#123;                    e.printStackTrace();                &#125;            &#125;            if (socket!= null )            &#123;                try &#123;                    socket.close();                &#125; catch (IOException e) &#123;                    e.printStackTrace();                &#125;            &#125;        &#125;    &#125;&#125;\n服务端\n建立服务的端口\n\n等待用户的连接\n\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677package com.jhj.dlpu.testTCP;import java.io.ByteArrayOutputStream;import java.io.IOException;import java.io.InputStream;import java.net.ServerSocket;import java.net.Socket;//服务端模型public class testServer &#123;    public static void main(String[] args) &#123;        ServerSocket serverSocket = null;        Socket socket= null;        InputStream is= null;        ByteArrayOutputStream baos= null;        try &#123;                //我得有个地址                serverSocket = new ServerSocket(9999);                //等待客户端连接过来                socket = serverSocket.accept();                //读取客户端的信息                is = socket.getInputStream();                //管道流                baos = new ByteArrayOutputStream();                byte[] buffer = new byte[1024];                int len;                while((len = is.read(buffer))!=-1)&#123;                    baos.write(buffer,0,len);                &#125;                System.out.println(baos.toString());            &#125; catch (IOException e) &#123;                e.printStackTrace();            &#125;            finally &#123;                //关闭资源                if (baos!=null)&#123;                    try &#123;                        baos.close();                    &#125; catch (IOException e) &#123;                        e.printStackTrace();                    &#125;                &#125;                if (is!=null)&#123;                    try &#123;                        is.close();                    &#125; catch (IOException e) &#123;                        e.printStackTrace();                    &#125;                &#125;                if (socket!=null)&#123;                    try &#123;                        socket.close();                    &#125; catch (IOException e) &#123;                        e.printStackTrace();                    &#125;                &#125;                if (serverSocket!=null)&#123;                    try &#123;                        serverSocket.close();                    &#125; catch (IOException e) &#123;                        e.printStackTrace();                    &#125;                &#125;            &#125;    &#125;&#125;\n\n实现文件上传 服务器\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465package com.jhj.dlpu.testTCP;import java.io.*;import java.net.ServerSocket;import java.net.Socket;import java.nio.charset.StandardCharsets;public class testServerDemo02 &#123;    public static void main(String[] args) throws Exception &#123;        ServerSocket severSocket = new ServerSocket(9000);        System.out.println(&quot;服务器启动成功，正在监听客户端&quot;);        System.out.println(&quot;//  \\n&quot; +                &quot;//                                  _oo8oo_\\n&quot; +                &quot;//                                 o8888888o\\n&quot; +                &quot;//                                 88\\&quot; . \\&quot;88\\n&quot; +                &quot;//                                 (| -_- |)\\n&quot; +                &quot;//                                 0\\\\  =  /0\\n&quot; +                &quot;//                               ___/&#x27;===&#x27;\\\\___\\n&quot; +                &quot;//                             .&#x27; \\\\\\\\|     |// &#x27;.\\n&quot; +                &quot;//                            / \\\\\\\\|||  :  |||// \\\\\\n&quot; +                &quot;//                           / _||||| -:- |||||_ \\\\\\n&quot; +                &quot;//                          |   | \\\\\\\\\\\\  -  /// |   |\\n&quot; +                &quot;//                          | \\\\_|  &#x27;&#x27;\\\\---/&#x27;&#x27;  |_/ |\\n&quot; +                &quot;//                          \\\\  .-\\\\__  &#x27;-&#x27;  __/-.  /\\n&quot; +                &quot;//                        ___&#x27;. .&#x27;  /--.--\\\\  &#x27;. .&#x27;___\\n&quot; +                &quot;//                     .\\&quot;\\&quot; &#x27;&lt;  &#x27;.___\\\\_&lt;|&gt;_/___.&#x27;  &gt;&#x27; \\&quot;\\&quot;.\\n&quot; +                &quot;//                    | | :  `- \\\\`.:`\\\\ _ /`:.`/ -`  : | |\\n&quot; +                &quot;//                    \\\\  \\\\ `-.   \\\\_ __\\\\ /__ _/   .-` /  /\\n&quot; +                &quot;//                =====`-.____`.___ \\\\_____/ ___.`____.-`=====\\n&quot; +                &quot;//                                  `=---=`\\n&quot; +                &quot;//  \\n&quot; +                &quot;//  \\n&quot; +                &quot;//               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\n&quot; +                &quot;// \\n&quot; +                &quot;//                          佛祖保佑         永不宕机/永无bug\\n&quot; +                &quot;//&quot;);        //监听客户端的连接        Socket socket = severSocket.accept(); //阻塞式监听        System.out.println(&quot;接收到客户端信息&quot;);        //获取输入流        InputStream is = socket.getInputStream();        //4.文件输出        FileOutputStream fos = new FileOutputStream(new File(&quot;receive.jpg&quot;));        byte[] bytes = new byte[1024];        int len;        while((len = is.read(bytes)) != -1)&#123;            fos.write(bytes,0,len);        &#125;        OutputStream os = socket.getOutputStream();        os.write(&quot;successful&quot;.getBytes());        fos.close();        is.close();        socket.close();        severSocket.close();    &#125;&#125;\n\n​\t客户端\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package com.jhj.dlpu.testTCP;import java.io.*;import java.net.InetAddress;import java.net.Socket;public class testClientDemo02 &#123;    public static void main(String[] args) throws Exception&#123;        //创建一个socket连接        Socket socket = new Socket(InetAddress.getByName(&quot;127.0.0.1&quot;),9000);        //创建一个输出流        OutputStream os = socket.getOutputStream();        //读取文件        FileInputStream fis = new FileInputStream(new File(&quot;gyh.jpg&quot;));        byte[] bytes = new byte[fis.available()];        int len;        while((len = fis.read(bytes) )!= -1)&#123;            os.write(bytes,0,len);        &#125;        //我已经传完了        socket.shutdownOutput();        //确定服务器接受完成才可以断开        System.out.println(&quot;等待服务器响应&quot;);        InputStream inputStream = socket.getInputStream();        //String Byte[]        ByteArrayOutputStream baos = new ByteArrayOutputStream();        byte[] buffer = new byte[1024];        int len2;        while((len2 = inputStream.read(buffer))!=-1)&#123;            baos.write(buffer,0,len2);        &#125;        baos.close();        inputStream.close();        System.out.println(baos.toString());        fis.close();        os.close();        socket.close();    &#125;&#125;\n\n\n\n1.7UDPUDP聊天和UDP Packet里面getData()的一个坑\n出现问题：\n\n\nDatagramPacket的两个方法getData()和getLength()是不对应的。getLength()反映了刚刚接收到的数据的长度，而getData()反映了DatagramPacket对应缓冲区中的新接收到的数据和未被覆盖的旧数据，当我们使用DatagramPacket来处理新接收到的数据时，就容易同时触及到旧数据导致混乱。\n\nudp实现在线聊天123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package com.jhj.dlpu.testChat;import java.io.BufferedReader;import java.io.IOException;import java.io.InputStreamReader;import java.net.*;//发送监听public class UpdSenderDemo implements Runnable&#123;    String toAddress;    int port;    int toPort;    String from;    DatagramSocket socket =null;    InetAddress inetAddress = null;    public UpdSenderDemo(String toAddress, int toPort,String from) &#123;        this.from = from;        this.toAddress = toAddress;        this.toPort = toPort;        try &#123;            socket = new DatagramSocket();            inetAddress = InetAddress.getByName(toAddress);        &#125; catch (SocketException e) &#123;            e.printStackTrace();        &#125; catch (UnknownHostException e) &#123;            e.printStackTrace();        &#125;    &#125;    @Override    public void run() &#123;        while (true)&#123;            try &#123;                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));                String msg = from + &quot;:&quot; + reader.readLine();                if (&quot;exit()&quot;.equals(msg))                    break;                DatagramPacket packet = new DatagramPacket(msg.getBytes(),0,msg.getBytes().length,inetAddress,toPort);                socket.send(packet);            &#125; catch (IOException e) &#123;                e.printStackTrace();            &#125;        &#125;    &#125;&#125;\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647package com.jhj.dlpu.testChat;import java.io.IOException;import java.net.DatagramPacket;import java.net.DatagramSocket;import java.net.SocketException;//接收监听public class UpdReceiveDemo implements Runnable&#123;    int port;    DatagramSocket socket =null;    public UpdReceiveDemo(int port) &#123;        this.port = port;        try &#123;            socket =  new DatagramSocket(port);        &#125; catch (SocketException e) &#123;            e.printStackTrace();        &#125;    &#125;    @Override    public void run() &#123;        try &#123;            while (true)&#123;                byte[] buffer = new byte[1024];                DatagramPacket packet = new DatagramPacket(buffer,0,buffer.length);                socket.receive(packet);                byte[] data  = packet.getData();                String receive  =  new String(data,0, packet.getLength());                System.out.println(receive);            &#125;        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n123456789101112131415161718192021//多线程运行package com.jhj.dlpu.testChat;//学生public class StudentUser &#123;    public static void main(String[] args) &#123;        new Thread(new UpdReceiveDemo(7777)).start();        new Thread(new UpdSenderDemo(&quot;localhost&quot;,8888,&quot;学生&quot;)).start();    &#125;&#125;//老师public class TeacherUser &#123;    public static void main(String[] args) &#123;        new Thread(new UpdReceiveDemo(8888)).start();        new Thread(new UpdSenderDemo(&quot;localhost&quot;,7777,&quot;老师&quot;)).start();    &#125;&#125;\n\n\n\n1.8URL统一资源定位符 ：定位资源的，定位互联网上的一个资源\nDNS域名解析 www.baidu.com —&gt; xxx.xxx.xxx.xxx\n\n协议：&#x2F;&#x2F;ip地址，端口&#x2F;项目名&#x2F;资源\n\n","dateCreated":"2022-04-29T23:08:32+08:00","dateModified":"2022-04-29T23:08:32+08:00","datePublished":"2022-04-29T23:08:32+08:00","description":"","headline":"网络编程","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"},"publisher":{"@type":"Organization","name":"宏佳","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"}</script>
+    <meta name="description" content="网络编程1.1概述打电话 – 连接 – 接了 –通话     TCP 发短信  – 发送了就完事了 – 接受 UDP 计算机网络： 网络编程的目的：无线电台..传播交流信息，数据交换。通信  需要什么：  如何准确地定位网络的一台主机  端口，定位到这个计算机的某个资源 找到了这个主机，如何传输数据？  javaWeb：网页编程 B&#x2F;S 网络编程： TCP&#x2F;IP   C&amp;#x2">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="JhjInsist的个人博客">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:title" content="网络编程">
+<meta property="og:url" content="http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="JhjInsist的个人博客">
-<meta property="og:description" content="知道自己想做什么">
+<meta property="og:description" content="网络编程1.1概述打电话 – 连接 – 接了 –通话     TCP 发短信  – 发送了就完事了 – 接受 UDP 计算机网络： 网络编程的目的：无线电台..传播交流信息，数据交换。通信  需要什么：  如何准确地定位网络的一台主机  端口，定位到这个计算机的某个资源 找到了这个主机，如何传输数据？  javaWeb：网页编程 B&#x2F;S 网络编程： TCP&#x2F;IP   C&amp;#x2">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/asus/AppData/Roaming/Typora/typora-user-images/image-20220421172119872.png">
+<meta property="og:image" content="c:/Users/asus/AppData/Roaming/Typora/typora-user-images/image-20220421173135296.png">
+<meta property="og:image" content="c:/Users/asus/AppData/Roaming/Typora/typora-user-images/image-20220421173247482.png">
+<meta property="og:image" content="f:/markdown笔记/图片/image-20220426224522953.png">
+<meta property="article:published_time" content="2022-04-29T15:08:32.604Z">
+<meta property="article:modified_time" content="2022-04-29T15:08:32.604Z">
 <meta property="article:author" content="宏佳">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/asus/AppData/Roaming/Typora/typora-user-images/image-20220421172119872.png">
     
     
         
@@ -48,6 +55,8 @@
     
 
     
+        
+    
 </head>
 
     <body>
@@ -57,7 +66,7 @@
 
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -84,7 +93,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
         
@@ -312,29 +321,22 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
                         ">
-                <section class="postShorten-group main-content-wrap">
+                
+<article class="post">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
-                            aria-label=": 网络编程"
-                        >
-                            网络编程
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            网络编程
+        </h1>
+    
+    
+        <div class="post-meta">
     <time datetime="2022-04-29T23:08:32+08:00">
 	
 		    29 4月 2022
@@ -343,10 +345,13 @@
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h3 id="1-1概述"><a href="#1-1概述" class="headerlink" title="1.1概述"></a>1.1概述</h3><p>打电话 – 连接 – 接了 –通话     TCP</p>
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h3 id="1-1概述"><a href="#1-1概述" class="headerlink" title="1.1概述"></a>1.1概述</h3><p>打电话 – 连接 – 接了 –通话     TCP</p>
 <p>发短信  – 发送了就完事了 – 接受 UDP</p>
 <p>计算机网络：</p>
 <p>网络编程的目的：<br>无线电台..传播交流信息，数据交换。通信 </p>
@@ -521,402 +526,115 @@
 <p>协议：&#x2F;&#x2F;ip地址，端口&#x2F;项目名&#x2F;资源</p>
 </blockquote>
 
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Kommentieren und teilen
-                            </a>
-                        </p>
-                    
-                </div>
             
+
+
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%8F%E8%AE%B0/"
-                            aria-label=": 数据库随记"
-                        >
-                            数据库随记
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-04-29T23:08:32+08:00">
-	
-		    29 4月 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="表连接和子查询哪个效率更高？"><a href="#表连接和子查询哪个效率更高？" class="headerlink" title="表连接和子查询哪个效率更高？"></a>表连接和子查询哪个效率更高？</h1><h1 id="内连接和全连接？"><a href="#内连接和全连接？" class="headerlink" title="内连接和全连接？"></a>内连接和全连接？</h1>
-                    
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
                         
-
-
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
                     
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%8F%E8%AE%B0/"
+                    data-tooltip="数据库随记"
+                    aria-label="NÄCHSTER: 数据库随记"
+                >
                     
-                        <p>
-                            <a
-                                href="/2022/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%8F%E8%AE%B0/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Kommentieren und teilen
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
+                        <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/04/29/mybatisPlus/"
-                            aria-label=": mybatisPlus"
-                        >
-                            mybatisPlus
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-04-29T23:08:32+08:00">
-	
-		    29 4月 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
             
-                <div class="postShorten-content">
-                    <h1 id="mybatisPlus"><a href="#mybatisPlus" class="headerlink" title="mybatisPlus"></a>mybatisPlus</h1><h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>分页使用十分之多</p>
-<ol>
-<li>原始使用limit</li>
-<li>pageHelper</li>
-<li>mp内置分页插件</li>
-</ol>
-<blockquote>
-<p>如何使用？</p>
-</blockquote>
-<ol>
-<li>直接配置拦截器即可</li>
-<li>使用page</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPage</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="comment">//参数一：当前页 </span></span><br><span class="line">	<span class="comment">//参数二：页面大小</span></span><br><span class="line">	Page&lt;User&gt;page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(<span class="number">2</span>,<span class="number">5</span>);</span><br><span class="line">	user.selectPage(Page,<span class="literal">null</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20220324223139479.png" alt="image-20220324223139479"></p>
-<h2 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h2><ol>
-<li><p>根据id删除记录</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除通过id</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDelectById</span><span class="params">()</span>&#123;</span><br><span class="line">	userMapper.deleteById(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除通过id批量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDelectById</span><span class="params">()</span>&#123;</span><br><span class="line">	userMapper.deleteById(Array.asList(<span class="number">1111111l</span>,<span class="number">222222222l</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除通过map</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@test</span></span><br><span class="line">Public <span class="keyword">void</span> <span class="title function_">testDeleteMap</span><span class="params">()</span>&#123;</span><br><span class="line">	HashMap&lt;String,Object&gt;map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h3><p>管理员可以查看被查看删除的数据！ 以防止数据丢失</p>
-<h2 id="性能分析插件"><a href="#性能分析插件" class="headerlink" title="性能分析插件"></a>性能分析插件</h2><p>开发时会遇到一些慢sql</p>
-<p>mp提供性能分析插件</p>
-<p>作用：分析每条sql执行时间</p>
-<p>超过时间停止运行</p>
-<h2 id="条件构造器"><a href="#条件构造器" class="headerlink" title="条件构造器"></a>条件构造器</h2><p>十分重要：Wrapper</p>
-<p>很多官方文档</p>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/04/29/mybatisPlus/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Kommentieren und teilen
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                    title="Teilen auf Facebook"
+                    aria-label="Teilen auf Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/04/29/IO%E6%B5%81/"
-                            aria-label=": IO流笔记"
-                        >
-                            IO流笔记
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-04-29T23:08:32+08:00">
-	
-		    29 4月 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
             
-                <div class="postShorten-content">
-                    <h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><h2 id="i-input-0-output-流：数据-1字符-2字节-8位"><a href="#i-input-0-output-流：数据-1字符-2字节-8位" class="headerlink" title="i: input  0: output 流：数据 1字符 2字节 8位"></a>i: input  0: output 流：数据 1字符 2字节 8位</h2><h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><h2 id="一切皆为字节，字节流可读取任意文件"><a href="#一切皆为字节，字节流可读取任意文件" class="headerlink" title="一切皆为字节，字节流可读取任意文件"></a>一切皆为字节，字节流可读取任意文件</h2><h1 id="字节输出流：-OutputStream"><a href="#字节输出流：-OutputStream" class="headerlink" title="字节输出流： OutputStream"></a>字节输出流： OutputStream</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象类通过其六个子类</span></span><br><span class="line"><span class="comment">//java.io.FileOutPutsteam</span></span><br><span class="line"><span class="comment">//构造方法</span></span><br><span class="line"><span class="comment">//--(String name) 目的地是一根文件的路径</span></span><br><span class="line"><span class="comment">//--(File file) 目的地是一个文件</span></span><br><span class="line"><span class="comment">//会把FIleOutPutStream对象指向创建好的文件</span></span><br><span class="line"><span class="comment">//创建一个FOPS对象，构造方法中传递数据的目的地</span></span><br><span class="line">调用</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/04/29/IO%E6%B5%81/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Kommentieren und teilen
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                    title="Teilen auf Twitter"
+                    aria-label="Teilen auf Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/"
-                            aria-label=": markdown语法"
-                        >
-                            markdown语法
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-04-29T23:02:45+08:00">
-	
-		    29 4月 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
             
-                <div class="postShorten-content">
-                    <h1 id="Markdown快速入门（typora）"><a href="#Markdown快速入门（typora）" class="headerlink" title="Markdown快速入门（typora）"></a>Markdown快速入门（typora）</h1><h2 id="1、代码块"><a href="#1、代码块" class="headerlink" title="1、代码块:"></a>1、代码块:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码块语法</span></span><br><span class="line">​```Java(语言类型)</span><br><span class="line">​```shell</span><br></pre></td></tr></table></figure>
-
-<p><strong>1.1.java代码块</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello,World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>1.2.shell脚本代码块</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash  <span class="comment"># 脚本生成一个 100 以内的随机数,提示用户猜数字,根据用户的输入,提示用户猜对了,</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">猜小了或猜大了,直至用户猜对脚本结束。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">RANDOM 为系统自带的系统变量,值为 0‐32767的随机数</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用取余算法将随机数变为 1‐100 的随机数num=$[RANDOM%100+1]<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$num</span>&quot;</span></span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="built_in">read</span> 提示用户猜数字</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="keyword">if</span> 判断用户猜数字的大小关系:‐eq(等于),‐ne(不等于),‐gt(大于),‐ge(大于等于),</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">‐lt(小于),‐le(小于等于)</span></span><br><span class="line"></span><br><span class="line">while :</span><br><span class="line">  do     </span><br><span class="line">    read -p &quot;计算机生成了一个 1‐100 的随机数,你猜: &quot; cai    </span><br><span class="line">    if [ $cai -eq $num ]    </span><br><span class="line">    then        </span><br><span class="line">        echo &quot;恭喜,猜对了&quot;           </span><br><span class="line">        exit        </span><br><span class="line">    elif [ $cai -gt $num ]       </span><br><span class="line">    then            </span><br><span class="line">        echo &quot;Oops,猜大了&quot;         </span><br><span class="line">    else            </span><br><span class="line">        echo &quot;Oops,猜小了&quot;     </span><br><span class="line">    fi</span><br><span class="line">  done</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、标题："><a href="#2、标题：" class="headerlink" title="2、标题："></a>2、标题：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 标题语法</span></span><br><span class="line"></span><br><span class="line"># <span class="number">1</span>级标题</span><br><span class="line">## <span class="number">2</span>级标题</span><br><span class="line">### <span class="number">3</span>级标题</span><br><span class="line">#### <span class="number">4</span>级标题</span><br><span class="line">##### <span class="number">5</span>级标题</span><br><span class="line">###### <span class="number">6</span>级标题</span><br><span class="line"></span><br><span class="line">！**注意：<span class="string">&#x27;#&#x27;</span>与标题之间需要空格隔开**</span><br></pre></td></tr></table></figure>
-
-<h1 id="1级标题"><a href="#1级标题" class="headerlink" title="1级标题"></a>1级标题</h1><h2 id="2级标题"><a href="#2级标题" class="headerlink" title="2级标题"></a>2级标题</h2><h3 id="3级标题"><a href="#3级标题" class="headerlink" title="3级标题"></a>3级标题</h3><h4 id="4级标题"><a href="#4级标题" class="headerlink" title="4级标题"></a>4级标题</h4><h5 id="5级标题"><a href="#5级标题" class="headerlink" title="5级标题"></a>5级标题</h5><h6 id="6级标题"><a href="#6级标题" class="headerlink" title="6级标题"></a>6级标题</h6><h2 id="3、字体："><a href="#3、字体：" class="headerlink" title="3、字体："></a>3、字体：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 加粗</span><br><span class="line">**你好，世界**</span><br><span class="line"></span><br><span class="line">// 代码高亮显示</span><br><span class="line">==Hello,World!==</span><br><span class="line"></span><br><span class="line">// 删除线</span><br><span class="line">~~被删除的文字~~</span><br><span class="line"></span><br><span class="line">// 斜体</span><br><span class="line">*斜体*</span><br></pre></td></tr></table></figure>
-
-<p>&#x2F;&#x2F; 加粗<br><strong>你好，世界</strong></p>
-<p>&#x2F;&#x2F; 代码高亮显示<br>Hello,World!</p>
-<p>&#x2F;&#x2F; 删除线<br><del>被删除的文字</del></p>
-<p>&#x2F;&#x2F; 斜体<br><em>斜体</em></p>
-<h2 id="4、引用："><a href="#4、引用：" class="headerlink" title="4、引用："></a>4、引用：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 引用语法</span><br><span class="line">&gt;作责：爱因斯坦</span><br><span class="line">&gt;&gt;作责：爱因斯坦</span><br><span class="line">&gt;&gt;&gt;作责：爱因斯坦</span><br><span class="line"></span><br><span class="line">！！！几个尖括号就代表前面有几条竖线。</span><br></pre></td></tr></table></figure>
-
-<p>&#x2F;&#x2F; 引用语法</p>
-<blockquote>
-<p>作责：爱因斯坦</p>
-<blockquote>
-<p>作责：爱因斯坦</p>
-<blockquote>
-<p>作责：爱因斯坦</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5、分割线："><a href="#5、分割线：" class="headerlink" title="5、分割线："></a>5、分割线：</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分割线</span></span><br><span class="line">方式一：</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">方式二(此分割线相比方式一较粗，效果如下)：</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
-
-<p><strong>5.1.方式一的分割线</strong></p>
-<hr>
-<p><strong>5.2.方式二的分割线</strong></p>
-<hr>
-<h2 id="6、图片插入："><a href="#6、图片插入：" class="headerlink" title="6、图片插入："></a>6、图片插入：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在线图片/本地图片</span></span><br><span class="line">![图片名称](/dir/.../..) --图片插入方式(路径为：在线图片连接/本地图片绝对路径)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://www.cnblogs.com/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="demo"></p>
-<h2 id="7、超链接："><a href="#7、超链接：" class="headerlink" title="7、超链接："></a>7、超链接：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 超链接语法</span><br><span class="line">[超链接名称](超链接地址)</span><br></pre></td></tr></table></figure>
-
-<p>&#x2F;&#x2F; 超链接语法</p>
-<p>[恒亮的博客园](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liulia/">恒亮 - 博客园 (cnblogs.com)</a>)</p>
-<h2 id="8、列表："><a href="#8、列表：" class="headerlink" title="8、列表："></a>8、列表：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 无序列表</span><br><span class="line">- 无序列表<span class="number">1</span></span><br><span class="line">- 无序列表<span class="number">2</span></span><br><span class="line">- 无序列表<span class="number">3</span></span><br><span class="line"></span><br><span class="line">// 有序列表</span><br><span class="line"><span class="number">1.</span> 有序列表<span class="number">1</span></span><br><span class="line"><span class="number">2.</span> 有序列表<span class="number">2</span></span><br><span class="line"><span class="number">2.</span> 有序列表<span class="number">3</span></span><br><span class="line"></span><br><span class="line">！**注意：列表符和列表名称之间有空格**</span><br></pre></td></tr></table></figure>
-
-<p>&#x2F;&#x2F; 无序列表</p>
-<ul>
-<li>无序列表1</li>
-<li>无序列表2</li>
-<li>无序列表3</li>
-</ul>
-<p>&#x2F;&#x2F; 有序列表</p>
-<ol>
-<li>有序列表1</li>
-<li>有序列表2</li>
-<li>有序列表3</li>
-</ol>
-<h2 id="9、表格："><a href="#9、表格：" class="headerlink" title="9、表格："></a>9、表格：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键-&gt;插入-&gt;表格</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th>语文</th>
-<th>数学</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>张三</td>
-<td>88</td>
-<td>99</td>
-</tr>
-<tr>
-<td>李四</td>
-<td>99</td>
-<td>100</td>
-</tr>
-</tbody></table>
-<h2 id="10、快捷键："><a href="#10、快捷键：" class="headerlink" title="10、快捷键："></a>10、快捷键：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// <span class="number">1.</span>Ctrl + Shift + <span class="number">1</span>(F1下面的按键) =&gt; 调出文件及大纲栏</span><br><span class="line"></span><br><span class="line">// <span class="number">2.</span>Ctrl + / =&gt; 将编辑笔记转换为Markdown编辑语言</span><br></pre></td></tr></table></figure>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/04/29/Markdown%E8%AF%AD%E6%B3%95/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Kommentieren und teilen
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/04/29/redis/"
-                            aria-label=": "
-                        >
-                            (kein Titel)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-04-29T22:48:06+08:00">
-	
-		    29 4月 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/04/29/redis/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Kommentieren und teilen
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                    title="Teilen auf Google Plus"
+                    aria-label="Teilen auf Google Plus"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
         
         
-        <li class="pagination-number">Seite 1 von 1</li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+        
+            
+        
+    </div>
+</article>
+
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -926,6 +644,151 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/04/29/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%8F%E8%AE%B0/"
+                    data-tooltip="数据库随记"
+                    aria-label="NÄCHSTER: 数据库随记"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                    title="Teilen auf Facebook"
+                    aria-label="Teilen auf Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                    title="Teilen auf Twitter"
+                    aria-label="Teilen auf Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                    title="Teilen auf Google Plus"
+                    aria-label="Teilen auf Google Plus"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                        aria-label="Teilen auf Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                        aria-label="Teilen auf Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://example.com/2022/04/29/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+                        aria-label="Teilen auf Google Plus"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
             
         </div>
         
@@ -972,6 +835,8 @@
 
 <!--SCRIPTS END-->
 
+
+    
 
 
 
